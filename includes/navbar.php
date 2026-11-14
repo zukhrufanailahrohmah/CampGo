@@ -1,13 +1,41 @@
-<nav class="navbar">
-    <div class="container">
-        <a href="/CampGo/index.php" class="logo">CampGo</a>
 
+<nav class="navbar">
+    <div class="container navbar-container">
+
+        <!-- Logo -->
+        <a href="/CampGo/index.php" class="logo">
+            Camp<span>Go.</span>
+        </a>
+
+        <!-- Menu Navigasi -->
         <ul class="nav-menu">
-            <li><a href="/CampGo/index.php">Beranda</a></li>
-            <li><a href="/CampGo/customer/catalog.php">Katalog</a></li>
-            <li><a href="/CampGo/customer/articles.php">Artikel</a></li>
-            <li><a href="/CampGo/customer/contact.php">Kontak</a></li>
-            <li><a href="/CampGo/login.php">Login</a></li>
+            <li>
+                <a href="/CampGo/index.php">Beranda</a>
+            </li>
+
+            <li>
+                <a href="/CampGo/customer/katalog.php">Katalog</a>
+            </li>
+
+            <li>
+                <a href="/CampGo/customer/artikel.php">Artikel</a>
+            </li>
+
+            <li>
+                <a href="/CampGo/index.php#tentang">Tentang Kami</a>
+            </li>
+
+            <li>
+                <a href="/CampGo/index.php#kontak">Kontak</a>
+            </li>
         </ul>
+
+        <!-- Tombol Login -->
+        <div class="nav-button">
+            <a href="/CampGo/customer/login.php" class="btn-login">
+                Login
+            </a>
+        </div>
+
     </div>
 </nav>
