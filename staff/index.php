@@ -1,4 +1,4 @@
 <?php
-// Dashboard Admin CampGo
+// Dashboard Staff CampGo
 ?>
-<h1>Dashboard Admin CampGo</h1>
+<h1>Dashboard Staff CampGo</h1>
