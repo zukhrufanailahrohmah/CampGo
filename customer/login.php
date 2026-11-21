@@ -1,64 +1,59 @@
-
 <?php
-session_start();
+require_once __DIR__ . '/../includes/auth.php';
 
 // Jika sudah login, arahkan ke dashboard sesuai role
 if (isset($_SESSION['user_id'])) {
+    $role = $_SESSION['role'] ?? '';
 
-    if ($_SESSION['role'] === 'customer') {
-        header("Location: index.php");
-    } elseif ($_SESSION['role'] === 'staff') {
-        header("Location: ../staff/index.php");
-    } elseif ($_SESSION['role'] === 'admin') {
-        header("Location: ../admin/index.php");
-    } else {
-        session_unset();
-        session_destroy();
-        header("Location: login.php");
+    if (in_array($role, ['customer', 'staff', 'admin'], true)) {
+        redirect(dashboardPath($role));
     }
 
+    // Role tidak dikenali: bersihkan session
+    session_unset();
+    session_destroy();
+    header('Location: ' . url('customer/login.php'));
     exit;
 }
 
-$pesan = $_SESSION['login_error'] ?? '';
-unset($_SESSION['login_error']);
+$old = pull_old();
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CampGo</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/app-pages.css">
 </head>
 <body>
+<div class="auth-box">
 
     <h2>Login CampGo</h2>
     <p>Silakan masuk ke akun CampGo kamu.</p>
 
-    <?php if (!empty($pesan)): ?>
-        <p style="color: red;">
-            <?= htmlspecialchars($pesan); ?>
-        </p>
-    <?php endif; ?>
+    <?= flash_render(); ?>
 
     <form action="proses_login.php" method="POST">
+        <?= csrf_field(); ?>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" required>
-        <br><br>
+        <div class="form-row">
+            <label>Email:</label>
+            <input type="email" name="email" value="<?= h($old['email'] ?? ''); ?>" required>
+        </div>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required>
-        <br><br>
+        <div class="form-row">
+            <label>Password:</label>
+            <input type="password" name="password" required>
+        </div>
 
-        <button type="submit">Login</button>
-
+        <button type="submit" class="btn">Login</button>
     </form>
 
     <p>Belum punya akun?
         <a href="register.php">Daftar di sini</a>
     </p>
 
+</div>
 </body>
 </html>
