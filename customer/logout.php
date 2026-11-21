@@ -1,7 +1,5 @@
-
 <?php
-
-session_start();
+require_once __DIR__ . '/../includes/session.php';
 
 // Menghapus semua data session
 session_unset();
@@ -10,7 +8,5 @@ session_unset();
 session_destroy();
 
 // Kembali ke halaman login
-header("Location: test_login.php");
+header('Location: ' . BASE_URL . '/customer/login.php');
 exit;
-
-?>
