@@ -1,0 +1,162 @@
+/* =================================
+   CAMPGO - STYLE PANEL STAFF/ADMIN
+   Dibuat oleh: Nisa (Frontend 2)
+   Semua class diawali "pn-" agar tidak bentrok dengan style.css.
+   Font sengaja TIDAK diatur di sini: mengikuti font website (Naila).
+================================= */
+
+:root {
+    --pn-hijau-tua: #173d2b;
+    --pn-hijau: #244b35;
+    --pn-emas: #d69b45;
+    --pn-emas-terang: #e5ae59;
+    --pn-emas-gelap: #bd8130;
+    --pn-krem: #f7f7f1;
+    --pn-garis: #e9e9df;
+    --pn-sidebar: 250px;
+}
+
+.pn-body,
+.pn-body * {
+    box-sizing: border-box;
+}
+
+.pn-body {
+    margin: 0;
+    background: var(--pn-krem);
+    color: #2b2b2b;
+}
+
+.pn-body a {
+    text-decoration: none;
+}
+
+/* ---------- SIDEBAR ---------- */
+.pn-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--pn-sidebar);
+    background: var(--pn-hijau-tua);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.pn-logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: -1px;
+    padding: 0 10px;
+}
+
+.pn-logo span {
+    color: var(--pn-emas-terang);
+}
+
+.pn-role-label {
+    color: var(--pn-emas-terang);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 6px 10px 22px;
+}
+
+.pn-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.pn-menu a {
+    color: #e8efe9;
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.pn-menu a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--pn-emas-terang);
+}
+
+.pn-menu a.active {
+    background: var(--pn-emas);
+    color: #ffffff;
+}
+
+.pn-menu-title {
+    color: #9db5a5;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 18px 14px 6px;
+}
+
+.pn-logout {
+    margin-top: 20px;
+    text-align: center;
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.pn-logout:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- AREA KONTEN ---------- */
+.pn-main {
+    margin-left: var(--pn-sidebar);
+    min-height: 100vh;
+}
+
+.pn-topbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--pn-garis);
+}
+
+.pn-page-title {
+    font-size: 20px;
+    margin: 0;
+    color: var(--pn-hijau);
+    flex: 1;
+}
+
+.pn-user {
+    text-align: right;
+    line-height: 1.25;
+}
+
+.pn-user-name {
+    display: block;
+    font-weight: 600;
+}
+
+.pn-user-role {
+    font-size: 12px;
+    color: var(--pn-emas-gelap);
+    font-weight: 600;
+}
+
+.pn-content {
+    padding: 28px;
+}
+
+/* Tombol menu HP & overlay disembunyikan dulu (dipakai di Langkah 4) */
+.pn-burger,
+.pn-overlay {
+    display: none;
+}

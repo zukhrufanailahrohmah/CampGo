@@ -1,9 +1,18 @@
 <?php
+// =================================
+// CAMPGO - DASHBOARD STAFF
+// =================================
 
-require_once '../includes/auth.php';
+require_once __DIR__ . '/../includes/panel_functions.php';
 
-requireRole('staff');
+requirePanelAccess(['staff', 'admin']);
 
+$panelTitle = 'Dashboard Staff';
+$activeMenu = 'dashboard';
+
+include __DIR__ . '/../includes/panel_header.php';
 ?>
 
-<h1>Dashboard Staff CampGo</h1>
+<p>Selamat datang di panel staff CampGo!</p>
+
+<?php include __DIR__ . '/../includes/panel_footer.php'; ?>
