@@ -1,0 +1,37 @@
+/* CAMPGO - gaya halaman fungsional (login, booking, riwayat, staff)
+   Sengaja sederhana: Frontend (Naila/Nisa) boleh mengganti tampilannya,
+   tinggal pertahankan name input, action form, dan nama field PHP-nya. */
+.page-wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 60px; }
+.page-wrap h1 { margin: 0 0 6px; color: #143020; }
+.page-wrap h2 { margin: 28px 0 10px; color: #143020; }
+.muted { color: #6b7280; font-size: .92rem; }
+.auth-box { max-width: 420px; margin: 40px auto; padding: 0 20px; }
+.card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px 20px; margin: 12px 0; }
+.form-row { margin: 12px 0; }
+.form-row label { display: block; font-weight: 600; margin-bottom: 4px; }
+.form-row input[type=text], .form-row input[type=email], .form-row input[type=password],
+.form-row input[type=date], .form-row input[type=number], .form-row input[type=file],
+.form-row select, .form-row textarea { width: 100%; padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit; box-sizing: border-box; }
+.btn { display: inline-block; padding: 9px 18px; border: 0; border-radius: 6px; background: #2f6b46; color: #fff; font: inherit; cursor: pointer; text-decoration: none; }
+.btn:hover { background: #245437; }
+.btn-danger { background: #b42318; }
+.btn-light { background: #e5e7eb; color: #111827; }
+.flash { padding: 10px 14px; border-radius: 6px; margin: 10px 0; }
+.flash-error { background: #fee2e2; color: #991b1b; }
+.flash-success { background: #dcfce7; color: #166534; }
+.flash-info { background: #e0f2fe; color: #075985; }
+table.tbl { width: 100%; border-collapse: collapse; background: #fff; }
+table.tbl th, table.tbl td { padding: 9px 10px; border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; font-size: .93rem; }
+table.tbl th { background: #f3f4f6; }
+.table-scroll { overflow-x: auto; }
+.badge { display: inline-block; padding: 2px 9px; border-radius: 999px; background: #e5e7eb; font-size: .8rem; }
+.badge-confirmed, .badge-paid, .badge-completed { background: #dcfce7; color: #166534; }
+.badge-pending_payment, .badge-waiting_verification, .badge-unpaid { background: #fef3c7; color: #92400e; }
+.badge-cancelled, .badge-rejected { background: #fee2e2; color: #991b1b; }
+.badge-ongoing { background: #dbeafe; color: #1e40af; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+.pass { border: 2px dashed #2f6b46; border-radius: 12px; padding: 20px; background: #f7fbf8; }
+.pass .kode { font-size: 1.6rem; font-weight: 700; letter-spacing: 2px; color: #143020; }
+.pass .verif { font-family: monospace; font-size: 1.2rem; background: #fff; border: 1px solid #cbd5e1; padding: 6px 12px; display: inline-block; }
+.stok-hasil { margin-top: 10px; }

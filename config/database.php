@@ -21,4 +21,7 @@ $conn = mysqli_connect(
 if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
+
+// Charset utf8mb4 sesuai database
+mysqli_set_charset($conn, "utf8mb4");
 ?>

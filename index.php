@@ -27,7 +27,7 @@ include 'includes/navbar.php';
                     Sewa lebih mudah, praktis, dan terpercaya.
                 </p>
 
-                <a href="/CampGo/customer/katalog.php"
+                <a href="<?= BASE_URL ?>/customer/katalog.php"
                    class="btn-primary">
                     Jelajahi Katalog
                 </a>

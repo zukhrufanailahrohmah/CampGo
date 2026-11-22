@@ -1,0 +1,4 @@
+# Bukti pembayaran customer jangan masuk repository
+uploads/payments/*
+!uploads/payments/.gitkeep
+!uploads/payments/.htaccess
