@@ -15,9 +15,9 @@
         <div class="footer-section">
             <h3>Menu</h3>
             <ul>
-                <li><a href="/CampGo/index.php">Beranda</a></li>
-                <li><a href="/CampGo/customer/katalog.php">Katalog</a></li>
-                <li><a href="/CampGo/customer/artikel.php">Artikel</a></li>
+                <li><a href="<?= BASE_URL ?>/index.php">Beranda</a></li>
+                <li><a href="<?= BASE_URL ?>/customer/katalog.php">Katalog</a></li>
+                <li><a href="<?= BASE_URL ?>/customer/artikel.php">Artikel</a></li>
             </ul>
         </div>
 
