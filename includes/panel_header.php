@@ -4,33 +4,34 @@
 // Halaman yang memakai file ini harus mengisi dulu:
 //   $panelTitle = "Judul Halaman";
 //   $activeMenu = "dashboard";
+//   $extraCss   = ['app-pages.css'];   (opsional)
 // =================================
 
 require_once __DIR__ . '/panel_functions.php';
 
 $panelTitle = $panelTitle ?? 'Panel CampGo';
 $activeMenu = $activeMenu ?? '';
+$extraCss   = $extraCss ?? [];
 $role       = $_SESSION['role'] ?? '';
 $namaUser   = $_SESSION['full_name'] ?? 'Pengguna';
 
-// Daftar menu: [key, label, link]
-// Pola folder mengikuti Master Document & Mba Irul: staff/<fitur>/index.php
+// Daftar menu: [key, label, path relatif BASE_URL]
 $menuOperasional = [
-    ['dashboard',    'Dashboard',    $role === 'admin' ? '/CampGo/admin/index.php' : '/CampGo/staff/index.php'],
-    ['transaksi',    'Transaksi',    '/CampGo/staff/transactions/index.php'],
-    ['pembatalan',   'Pembatalan',   '/CampGo/staff/cancellations/index.php'],
-    ['perpanjangan', 'Perpanjangan', '/CampGo/staff/extensions/index.php'],
-    ['reschedule',   'Reschedule',   '/CampGo/staff/reschedules/index.php'],
-    ['antar-jemput', 'Antar-Jemput', '/CampGo/staff/deliveries/index.php'],
-    ['pengembalian', 'Pengembalian', '/CampGo/staff/returns/index.php'],
-    ['inventaris',   'Inventaris',   '/CampGo/staff/equipment/index.php'],
-    ['artikel',      'Artikel',      '/CampGo/staff/articles/index.php'],
+    ['dashboard',    'Dashboard',    $role === 'admin' ? 'admin/index.php' : 'staff/index.php'],
+    ['transaksi',    'Transaksi',    'staff/transactions/index.php'],
+    ['pembatalan',   'Pembatalan',   'staff/cancellations/index.php'],
+    ['perpanjangan', 'Perpanjangan', 'staff/extensions/index.php'],
+    ['reschedule',   'Reschedule',   'staff/reschedules/index.php'],
+    ['antar-jemput', 'Antar-Jemput', 'staff/deliveries/index.php'],
+    ['pengembalian', 'Pengembalian', 'staff/returns/index.php'],
+    ['inventaris',   'Inventaris',   'staff/equipment/index.php'],
+    ['artikel',      'Artikel',      'staff/articles/index.php'],
 ];
 
 $menuAdmin = [
-    ['laporan', 'Laporan',        '/CampGo/admin/reports/index.php'],
-    ['akun',    'Manajemen Akun', '/CampGo/admin/users/index.php'],
-    ['log',     'Log Aktivitas',  '/CampGo/admin/logs/index.php'],
+    ['laporan', 'Laporan',        'admin/reports/index.php'],
+    ['akun',    'Manajemen Akun', 'admin/users/index.php'],
+    ['log',     'Log Aktivitas',  'admin/logs/index.php'],
 ];
 ?>
 <!DOCTYPE html>
@@ -39,12 +40,16 @@ $menuAdmin = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e($panelTitle) ?> - CampGo</title>
+    <title><?= h($panelTitle) ?> - CampGo</title>
 
     <!-- CSS Naila dimuat dulu agar font/gaya dasar ikut sama -->
-    <link rel="stylesheet" href="/CampGo/assets/css/style.css">
-    <!-- CSS panel (Nisa) -->
-    <link rel="stylesheet" href="/CampGo/assets/css/panel.css">
+    <link rel="stylesheet" href="<?= h(url('assets/css/style.css')) ?>">
+    <!-- CSS tambahan milik halaman (mis. app-pages.css dari Mba Irul) -->
+    <?php foreach ($extraCss as $css): ?>
+        <link rel="stylesheet" href="<?= h(url('assets/css/' . $css)) ?>">
+    <?php endforeach; ?>
+    <!-- CSS panel (Nisa), dimuat terakhir -->
+    <link rel="stylesheet" href="<?= h(url('assets/css/panel.css')) ?>">
 </head>
 
 <body class="pn-body">
@@ -53,25 +58,25 @@ $menuAdmin = [
 
         <!-- SIDEBAR -->
         <aside class="pn-sidebar" id="pnSidebar">
-            <a href="/CampGo/index.php" class="pn-logo">Camp<span>Go.</span></a>
+            <a href="<?= h(url('index.php')) ?>" class="pn-logo">Camp<span>Go.</span></a>
             <p class="pn-role-label"><?= $role === 'admin' ? 'Panel Admin' : 'Panel Staff' ?></p>
 
             <nav class="pn-menu">
-                <?php foreach ($menuOperasional as [$key, $label, $link]): ?>
-                    <a href="<?= e($link) ?>"
-                        class="<?= $activeMenu === $key ? 'active' : '' ?>"><?= e($label) ?></a>
+                <?php foreach ($menuOperasional as [$key, $label, $path]): ?>
+                    <a href="<?= h(url($path)) ?>"
+                        class="<?= $activeMenu === $key ? 'active' : '' ?>"><?= h($label) ?></a>
                 <?php endforeach; ?>
 
                 <?php if ($role === 'admin'): ?>
                     <p class="pn-menu-title">Khusus Admin</p>
-                    <?php foreach ($menuAdmin as [$key, $label, $link]): ?>
-                        <a href="<?= e($link) ?>"
-                            class="<?= $activeMenu === $key ? 'active' : '' ?>"><?= e($label) ?></a>
+                    <?php foreach ($menuAdmin as [$key, $label, $path]): ?>
+                        <a href="<?= h(url($path)) ?>"
+                            class="<?= $activeMenu === $key ? 'active' : '' ?>"><?= h($label) ?></a>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </nav>
 
-            <a href="/CampGo/customer/logout.php" class="pn-logout">Keluar</a>
+            <a href="<?= h(url('customer/logout.php')) ?>" class="pn-logout">Keluar</a>
         </aside>
 
         <div class="pn-overlay" id="pnOverlay"></div>
@@ -81,10 +86,10 @@ $menuAdmin = [
 
             <header class="pn-topbar">
                 <button class="pn-burger" id="pnBurger" aria-label="Buka menu">☰</button>
-                <h1 class="pn-page-title"><?= e($panelTitle) ?></h1>
+                <h1 class="pn-page-title"><?= h($panelTitle) ?></h1>
                 <div class="pn-user">
-                    <span class="pn-user-name"><?= e($namaUser) ?></span>
-                    <span class="pn-user-role"><?= e(ucfirst($role)) ?></span>
+                    <span class="pn-user-name"><?= h($namaUser) ?></span>
+                    <span class="pn-user-role"><?= h(ucfirst($role)) ?></span>
                 </div>
             </header>
 
