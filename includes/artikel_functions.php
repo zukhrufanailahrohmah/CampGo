@@ -56,3 +56,23 @@ function atRenderIsi(string $teks): string
     }
     return $html;
 }
+
+// Kartu artikel siap pakai (dipakai homepage). Butuh katalog_functions.php.
+// $a butuh: title, slug, excerpt, content, image_path, tanggal
+function atKartuArtikelHtml(array $a): string
+{
+    $link = url('customer/artikel_detail.php?slug=' . urlencode($a['slug']));
+    $ringkas = trim((string)$a['excerpt']) !== '' ? $a['excerpt'] : preg_replace('/^(## |- )/m', '', (string)$a['content']);
+    ob_start(); ?>
+    <article class="kt-card">
+        <a href="<?= h($link) ?>" tabindex="-1" aria-hidden="true"><?= ktFotoHtml($a['image_path'], $a['title']) ?></a>
+        <div class="kt-card-body">
+            <span class="kt-label"><?= h(atTanggal($a['tanggal'])) ?></span>
+            <h3><a href="<?= h($link) ?>"><?= h($a['title']) ?></a></h3>
+            <p class="kt-desc"><?= h(ktRingkas($ringkas, 110)) ?></p>
+            <a class="kt-btn kt-btn-outline" href="<?= h($link) ?>">Baca artikel</a>
+        </div>
+    </article>
+    <?php
+    return ob_get_clean();
+}

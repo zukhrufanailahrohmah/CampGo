@@ -1,0 +1,106 @@
+/* =================================
+   CAMPGO - STYLE TAMBAHAN HOMEPAGE (Frontend 1 / Naila)
+   Dimuat bersama katalog.css dan artikel.css (kartu, grid, tombol).
+   Class diawali "hm-" supaya tidak bentrok dengan style.css.
+================================= */
+
+/* Ritme jarak homepage: 60px di antara bagian (sama dengan .advantages/.how-to di style.css) */
+.hm-section {
+    padding: 60px 0;
+}
+
+/* Bagian putih yang berurutan: jarak cukup sekali saja (tidak dobel) */
+.hm-section + .hm-section,
+.hm-section + .advantages,
+.advantages + .hm-section,
+.how-to + .hm-section {
+    padding-top: 0;
+}
+
+.hm-more {
+    margin-top: 34px;
+    text-align: center;
+}
+
+/* ---------- Kategori ---------- */
+.hm-kategori-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+}
+
+.hm-kategori {
+    display: block;
+    padding: 22px 20px;
+    background: var(--cg-krem);
+    border: 1px solid var(--cg-garis);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.hm-kategori strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 17px;
+    color: var(--cg-hijau-sedang);
+}
+
+.hm-kategori span {
+    font-size: 13px;
+    color: var(--cg-teks-redup);
+}
+
+.hm-kategori:hover {
+    border-color: var(--cg-emas);
+    transform: translateY(-2px);
+}
+
+/* ---------- Ajakan & kontak ---------- */
+.hm-cta {
+    padding: 64px 0;
+    background: var(--cg-hijau-tua);
+    color: #ffffff;
+    text-align: center;
+}
+
+.hm-cta h2 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+.hm-cta p {
+    max-width: 540px;
+    margin: 0 auto 26px;
+    color: #c9d6cd;
+}
+
+.hm-cta-aksi {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.hm-cta .kt-btn-outline {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.hm-cta .kt-btn-outline:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: var(--cg-hijau-tua);
+}
+
+@media (max-width: 768px) {
+    .hm-section,
+    .advantages,
+    .how-to {
+        padding: 44px 0;
+    }
+
+    .hm-cta h2 {
+        font-size: 25px;
+    }
+}

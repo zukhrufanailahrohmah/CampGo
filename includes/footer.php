@@ -1,4 +1,10 @@
-
+<?php
+require_once __DIR__ . '/kontak_functions.php';
+if (!isset($conn) || !($conn instanceof mysqli)) {
+    require_once __DIR__ . '/../config/database.php';
+}
+$kontakFooter = kontakAktif($conn);
+?>
 <footer class="footer" id="kontak">
     <div class="container footer-container">
 
@@ -24,9 +30,22 @@
         <!-- Kontak -->
         <div class="footer-section">
             <h3>Hubungi Kami</h3>
-            <p>WhatsApp: 08xxxxxxxxxx</p>
-            <p>Email: campgo@gmail.com</p>
-            <p>Instagram: @campgo</p>
+            <?php if ($kontakFooter): ?>
+                <?php foreach ($kontakFooter as $daftar): foreach ($daftar as $k): $tautan = kontakLink($k); ?>
+                    <p><?= h($k['label']) ?>:
+                        <?php if ($tautan): ?>
+                            <a href="<?= h($tautan) ?>"<?= strpos($tautan, 'http') === 0 ? ' target="_blank" rel="noopener"' : '' ?>><?= h($k['contact_value']) ?></a>
+                        <?php else: ?>
+                            <?= h($k['contact_value']) ?>
+                        <?php endif; ?>
+                    </p>
+                <?php endforeach; endforeach; ?>
+            <?php else: ?>
+                <!-- Cadangan sampai kontak diisi lewat CRUD Kontak -->
+                <p>WhatsApp: 08xxxxxxxxxx</p>
+                <p>Email: campgo@gmail.com</p>
+                <p>Instagram: @campgo</p>
+            <?php endif; ?>
         </div>
 
         <!-- Layanan -->

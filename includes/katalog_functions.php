@@ -51,3 +51,56 @@ function ktFotoHtml(?string $path, string $alt): string
     }
     return '<div class="kt-foto kt-foto-kosong"><span>Foto belum tersedia</span></div>';
 }
+
+// ---------------------------------
+// Kartu siap pakai (dipakai homepage). Markup sama dengan katalog.php.
+// ---------------------------------
+
+// $b butuh: equipment_id, equipment_name, description, image_path, price_per_day,
+//           stock_total, stock_unavailable, category_name
+function ktKartuBarangHtml(array $b): string
+{
+    $detail = url('customer/detail.php?jenis=barang&id=' . (int)$b['equipment_id']);
+    $sisa = ktSisaStok($b);
+    ob_start(); ?>
+    <article class="kt-card">
+        <a href="<?= h($detail) ?>" tabindex="-1" aria-hidden="true"><?= ktFotoHtml($b['image_path'], $b['equipment_name']) ?></a>
+        <div class="kt-card-body">
+            <span class="kt-label"><?= h($b['category_name']) ?></span>
+            <h3><a href="<?= h($detail) ?>"><?= h($b['equipment_name']) ?></a></h3>
+            <p class="kt-desc"><?= h(ktRingkas($b['description'])) ?></p>
+            <div class="kt-card-foot">
+                <div class="kt-harga"><?= h(rupiah($b['price_per_day'])) ?> <small>/ hari</small></div>
+                <?php if ($sisa > 0): ?>
+                    <span class="kt-stok kt-stok-ada">Stok <?= $sisa ?></span>
+                <?php else: ?>
+                    <span class="kt-stok kt-stok-habis">Habis</span>
+                <?php endif; ?>
+            </div>
+            <a class="kt-btn kt-btn-outline" href="<?= h($detail) ?>">Lihat detail</a>
+        </div>
+    </article>
+    <?php
+    return ob_get_clean();
+}
+
+// $p butuh: package_id, package_name, description, image_path, price_per_day
+function ktKartuPaketHtml(array $p): string
+{
+    $detail = url('customer/detail.php?jenis=paket&id=' . (int)$p['package_id']);
+    ob_start(); ?>
+    <article class="kt-card">
+        <a href="<?= h($detail) ?>" tabindex="-1" aria-hidden="true"><?= ktFotoHtml($p['image_path'], $p['package_name']) ?></a>
+        <div class="kt-card-body">
+            <span class="kt-label">Paket toko</span>
+            <h3><a href="<?= h($detail) ?>"><?= h($p['package_name']) ?></a></h3>
+            <p class="kt-desc"><?= h(ktRingkas($p['description'])) ?></p>
+            <div class="kt-card-foot">
+                <div class="kt-harga"><?= h(rupiah($p['price_per_day'])) ?> <small>/ hari</small></div>
+            </div>
+            <a class="kt-btn kt-btn-outline" href="<?= h($detail) ?>">Lihat isi paket</a>
+        </div>
+    </article>
+    <?php
+    return ob_get_clean();
+}

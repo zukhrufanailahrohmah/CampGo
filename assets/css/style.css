@@ -124,7 +124,12 @@ textarea:focus-visible {
 
 .advantages,
 .how-to {
-    padding: 75px 0;
+    padding: 60px 0;
+}
+
+/* Dua bagian putih berurutan: jarak cukup sekali saja (tidak dobel) */
+.advantages + .how-to {
+    padding-top: 0;
 }
 
 .section-heading {
