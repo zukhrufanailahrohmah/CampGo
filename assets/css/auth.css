@@ -1,0 +1,256 @@
+/* =================================
+   CAMPGO - STYLE LOGIN & REGISTER (Frontend 1 / Naila)
+   Dimuat setelah style.css (memakai variabel --cg-*).
+   Semua class diawali "au-" supaya tidak bentrok dengan app-pages.css.
+   Hanya tampilan: name input, action form, dan CSRF tidak diubah.
+================================= */
+
+.au-body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--cg-krem);
+}
+
+.au-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    min-height: 100vh;
+}
+
+/* ---------- Panel kiri (merek) ---------- */
+.au-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 44px 48px;
+    color: #ffffff;
+    background:
+        linear-gradient(160deg, rgba(20, 48, 32, 0.94), rgba(20, 48, 32, 0.78)),
+        url("https://images.unsplash.com/photo-1478131143081-80f7f84ca84d") center / cover no-repeat;
+}
+
+.au-logo {
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.au-logo span {
+    color: var(--cg-emas-terang);
+}
+
+.au-side h2 {
+    margin: 0 0 12px;
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+.au-side h2 span {
+    color: var(--cg-emas-terang);
+}
+
+.au-slogan {
+    margin: 0;
+    max-width: 380px;
+    color: #e8efe9;
+}
+
+.au-points {
+    margin: 26px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 12px;
+}
+
+.au-points li {
+    display: flex;
+    gap: 10px;
+    font-size: 15px;
+    color: #e8efe9;
+}
+
+.au-points li::before {
+    content: "";
+    flex: none;
+    width: 8px;
+    height: 8px;
+    margin-top: 9px;
+    border-radius: 50%;
+    background: var(--cg-emas-terang);
+}
+
+.au-side small {
+    color: #9db5a5;
+}
+
+/* ---------- Panel kanan (form) ---------- */
+.au-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+.au-card {
+    width: 100%;
+    max-width: 440px;
+}
+
+.au-back {
+    display: inline-block;
+    margin-bottom: 22px;
+    font-size: 14px;
+    color: var(--cg-teks-redup);
+    text-decoration: none;
+}
+
+.au-back:hover {
+    color: var(--cg-emas-gelap);
+}
+
+.au-card h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    color: var(--cg-hijau);
+}
+
+.au-sub {
+    margin: 0 0 22px;
+    color: var(--cg-teks-redup);
+}
+
+.au-field {
+    margin: 0 0 16px;
+}
+
+.au-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cg-hijau-sedang);
+}
+
+.au-field input,
+.au-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d9d9cc;
+    border-radius: 6px;
+    background: #ffffff;
+    font: inherit;
+    color: var(--cg-teks);
+    transition: 0.2s;
+}
+
+.au-field textarea {
+    resize: vertical;
+}
+
+.au-field input:focus,
+.au-field textarea:focus {
+    outline: none;
+    border-color: var(--cg-emas);
+    box-shadow: 0 0 0 3px rgba(214, 155, 69, 0.25);
+}
+
+.au-hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--cg-teks-redup);
+}
+
+.au-row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.au-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 20px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--cg-emas);
+    color: #ffffff;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.au-btn:hover {
+    background: var(--cg-emas-gelap);
+}
+
+.au-alt {
+    margin: 22px 0 0;
+    font-size: 14px;
+    text-align: center;
+    color: var(--cg-teks-redup);
+}
+
+.au-alt a {
+    font-weight: 600;
+    color: var(--cg-hijau-sedang);
+}
+
+.au-alt a:hover {
+    color: var(--cg-emas-gelap);
+}
+
+/* Pesan dari flash_render() */
+.au-card .flash {
+    margin: 0 0 18px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.au-card .flash-error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.au-card .flash-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.au-card .flash-info {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 860px) {
+    .au-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .au-side {
+        padding: 20px 24px;
+    }
+
+    .au-side-isi,
+    .au-side small {
+        display: none;
+    }
+
+    .au-main {
+        align-items: flex-start;
+        padding: 28px 20px 40px;
+    }
+}
+
+@media (max-width: 520px) {
+    .au-row2 {
+        grid-template-columns: 1fr;
+    }
+}

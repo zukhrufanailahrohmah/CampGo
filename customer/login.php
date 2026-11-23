@@ -24,35 +24,46 @@ $old = pull_old();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CampGo</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/app-pages.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/auth.css">
 </head>
-<body>
-<div class="auth-box">
+<body class="au-body">
+<div class="au-wrap">
 
-    <h2>Login CampGo</h2>
-    <p>Silakan masuk ke akun CampGo kamu.</p>
+    <?php include __DIR__ . '/../includes/auth_side.php'; ?>
 
-    <?= flash_render(); ?>
+    <main class="au-main">
+        <div class="au-card">
 
-    <form action="proses_login.php" method="POST">
-        <?= csrf_field(); ?>
+            <a class="au-back" href="<?= BASE_URL ?>/index.php">&larr; Kembali ke beranda</a>
 
-        <div class="form-row">
-            <label>Email:</label>
-            <input type="email" name="email" value="<?= h($old['email'] ?? ''); ?>" required>
+            <h1>Login CampGo</h1>
+            <p class="au-sub">Silakan masuk ke akun CampGo kamu.</p>
+
+            <?= flash_render(); ?>
+
+            <form action="proses_login.php" method="POST">
+                <?= csrf_field(); ?>
+
+                <div class="au-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" value="<?= h($old['email'] ?? ''); ?>" required>
+                </div>
+
+                <div class="au-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" required>
+                </div>
+
+                <button type="submit" class="au-btn">Login</button>
+            </form>
+
+            <p class="au-alt">Belum punya akun?
+                <a href="register.php">Daftar di sini</a>
+            </p>
+
         </div>
-
-        <div class="form-row">
-            <label>Password:</label>
-            <input type="password" name="password" required>
-        </div>
-
-        <button type="submit" class="btn">Login</button>
-    </form>
-
-    <p>Belum punya akun?
-        <a href="register.php">Daftar di sini</a>
-    </p>
+    </main>
 
 </div>
 </body>

@@ -14,50 +14,64 @@ $old = pull_old();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - CampGo</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/app-pages.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/auth.css">
 </head>
-<body>
-<div class="auth-box">
+<body class="au-body">
+<div class="au-wrap">
 
-    <h2>Daftar Akun CampGo</h2>
-    <p>Buat akun untuk mulai menggunakan CampGo.</p>
+    <?php include __DIR__ . '/../includes/auth_side.php'; ?>
 
-    <?= flash_render(); ?>
+    <main class="au-main">
+        <div class="au-card">
 
-    <form action="proses_register.php" method="POST">
-        <?= csrf_field(); ?>
+            <a class="au-back" href="<?= BASE_URL ?>/index.php">&larr; Kembali ke beranda</a>
 
-        <div class="form-row">
-            <label>Nama Lengkap:</label>
-            <input type="text" name="full_name" maxlength="120" value="<?= h($old['full_name'] ?? ''); ?>" required>
+            <h1>Daftar Akun CampGo</h1>
+            <p class="au-sub">Buat akun untuk mulai menggunakan CampGo.</p>
+
+            <?= flash_render(); ?>
+
+            <form action="proses_register.php" method="POST">
+                <?= csrf_field(); ?>
+
+                <div class="au-field">
+                    <label for="full_name">Nama Lengkap</label>
+                    <input type="text" id="full_name" name="full_name" maxlength="120" autocomplete="name" value="<?= h($old['full_name'] ?? ''); ?>" required>
+                </div>
+
+                <div class="au-row2">
+                    <div class="au-field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" maxlength="150" autocomplete="email" value="<?= h($old['email'] ?? ''); ?>" required>
+                    </div>
+
+                    <div class="au-field">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="text" id="phone" name="phone" maxlength="25" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" value="<?= h($old['phone'] ?? ''); ?>" required>
+                    </div>
+                </div>
+
+                <div class="au-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" minlength="8" maxlength="72" autocomplete="new-password" required>
+                    <span class="au-hint">Minimal 8 karakter.</span>
+                </div>
+
+                <div class="au-field">
+                    <label for="address">Alamat</label>
+                    <textarea id="address" name="address" rows="3" autocomplete="street-address" required><?= h($old['address'] ?? ''); ?></textarea>
+                </div>
+
+                <button type="submit" class="au-btn">Daftar</button>
+            </form>
+
+            <p class="au-alt">Sudah punya akun?
+                <a href="login.php">Login di sini</a>
+            </p>
+
         </div>
-
-        <div class="form-row">
-            <label>Email:</label>
-            <input type="email" name="email" maxlength="150" value="<?= h($old['email'] ?? ''); ?>" required>
-        </div>
-
-        <div class="form-row">
-            <label>Nomor Telepon:</label>
-            <input type="text" name="phone" maxlength="25" placeholder="08xxxxxxxxxx" value="<?= h($old['phone'] ?? ''); ?>" required>
-        </div>
-
-        <div class="form-row">
-            <label>Password (minimal 8 karakter):</label>
-            <input type="password" name="password" minlength="8" maxlength="72" required>
-        </div>
-
-        <div class="form-row">
-            <label>Alamat:</label>
-            <textarea name="address" required><?= h($old['address'] ?? ''); ?></textarea>
-        </div>
-
-        <button type="submit" class="btn">Daftar</button>
-    </form>
-
-    <p>Sudah punya akun?
-        <a href="login.php">Login di sini</a>
-    </p>
+    </main>
 
 </div>
 </body>
