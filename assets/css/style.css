@@ -1,3 +1,63 @@
+/* =================================
+   FONDASI CAMPGO (dipakai semua halaman)
+   Palette mengikuti yang sudah ada di homepage dan panel.
+   Variabel --cg-* dipakai untuk halaman BARU. Nilai lama di bawah
+   tidak diubah supaya halaman Nisa dan Mba Irul tidak berubah.
+================================= */
+
+:root {
+    --cg-hijau-tua: #173d2b;      /* navbar, footer, sidebar */
+    --cg-hijau: #244b35;          /* judul */
+    --cg-hijau-sedang: #28563b;   /* judul kartu */
+    --cg-emas: #d69b45;           /* tombol utama */
+    --cg-emas-terang: #e5ae59;    /* aksen, logo "Go." */
+    --cg-emas-gelap: #bd8130;     /* hover tombol */
+    --cg-krem: #f7f7f1;           /* latar kartu */
+    --cg-garis: #e9e9df;          /* border */
+    --cg-teks: #2b2b2b;
+    --cg-teks-redup: #666666;
+
+    /* Font sementara: bawaan sistem. Mau ganti font, cukup ubah baris ini
+       (dan tambahkan <link> font di includes/header.php). */
+    --cg-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--cg-font);
+    color: var(--cg-teks);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Fokus keyboard yang terlihat */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--cg-emas-terang);
+    outline-offset: 2px;
+}
 
 /* =================================
    HOMEPAGE CAMPGO
@@ -254,5 +314,110 @@
 
     .nav-menu li a {
         font-size: 13px;
+    }
+}
+
+
+/* =================================
+   TOMBOL & NAVBAR (pelengkap)
+================================= */
+
+.btn-primary {
+    text-decoration: none;
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* =================================
+   FOOTER CAMPGO
+================================= */
+
+.footer {
+    background-color: var(--cg-hijau-tua);
+    color: #e8efe9;
+    padding-top: 60px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+    gap: 36px;
+}
+
+.footer-section h2 {
+    margin: 0 0 12px;
+    font-size: 27px;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+.footer-section h2 span {
+    color: var(--cg-emas-terang);
+}
+
+.footer-section h3 {
+    margin: 0 0 14px;
+    font-size: 16px;
+    color: var(--cg-emas-terang);
+}
+
+.footer-section p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #c9d6cd;
+}
+
+.footer-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: #c9d6cd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    color: var(--cg-emas-terang);
+}
+
+.footer-bottom {
+    margin-top: 44px;
+    padding: 18px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 13px;
+    color: #9db5a5;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding-top: 44px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 26px;
     }
 }
