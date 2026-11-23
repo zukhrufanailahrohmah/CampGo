@@ -1,0 +1,82 @@
+/* =================================
+   CAMPGO - STYLE ARTIKEL (Frontend 1 / Naila)
+   Dimuat bersama katalog.css (kartu, grid, tombol, header halaman).
+   Class khusus halaman baca diawali "at-".
+================================= */
+
+.at-baca {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.at-baca h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    line-height: 1.25;
+    color: var(--cg-hijau);
+}
+
+.at-meta {
+    margin: 0 0 22px;
+    color: var(--cg-teks-redup);
+    font-size: 14px;
+}
+
+.at-hero {
+    margin-bottom: 26px;
+}
+
+.at-hero .kt-foto {
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    border: 1px solid var(--cg-garis);
+}
+
+.at-isi {
+    font-size: 17px;
+    line-height: 1.85;
+}
+
+.at-isi p {
+    margin: 0 0 18px;
+}
+
+.at-isi h2 {
+    margin: 32px 0 10px;
+    font-size: 22px;
+    color: var(--cg-hijau-sedang);
+}
+
+.at-isi ul {
+    margin: 0 0 18px;
+    padding-left: 22px;
+}
+
+.at-isi li {
+    margin-bottom: 6px;
+}
+
+.at-baca .kt-aksi {
+    margin-top: 32px;
+}
+
+.at-lain {
+    margin-top: 56px;
+    padding-top: 8px;
+    border-top: 1px solid var(--cg-garis);
+}
+
+.at-lain h2 {
+    margin-top: 28px;
+    margin-bottom: 18px;
+}
+
+@media (max-width: 768px) {
+    .at-baca h1 {
+        font-size: 28px;
+    }
+
+    .at-isi {
+        font-size: 16px;
+    }
+}
